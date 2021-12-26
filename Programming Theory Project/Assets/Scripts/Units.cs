@@ -2,32 +2,38 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Units : MonoBehaviour
+public abstract class Units : MonoBehaviour // Inheritance
 {
-    public float speed;
-    public Vector3 unitPosition { get; protected set; }
-    protected Rigidbody unitRb;
-    protected  Vector3 unitDirection;
+    protected float speed; //Encapsulaption
+    public Vector3 unitPosition { get; protected set; } //Encapsulaption
+    protected Rigidbody unitRb; //Encapsulaption
+    protected  Vector3 unitDirection; //Encapsulaption
 
-    private void Start()
+
+    protected virtual void move() // Abstraction and refactoring
     {
-        unitRb = GetComponent<Rigidbody>();
+        unitDirection = transform.TransformDirection(unitDirection);
+        unitRb.MovePosition(unitPosition + speed * unitDirection * Time.deltaTime);
     }
-    protected abstract void move();
-        
-     
+
+    protected virtual Vector3 ObtainPosition() // Abstraction and refactoring
+    {
+        unitPosition = transform.position;
+        return unitPosition;
+    }
+
+    
        
-    protected abstract void Look();
+    protected abstract void Look(); // Abstraction and refactoring
 
     private void LateUpdate()
     {
-        move();
+        move(); // Abstraction and refactoring
     }
 
     private void Update()
     {
-        unitPosition = transform.position;
-        Look();
+        Look(); // Abstraction and refactoring
     }
 
 

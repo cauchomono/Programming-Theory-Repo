@@ -1,33 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class PlayerController : Units
-{   private float rotationSpeed = 3;
-    
-    Vector3 playerDirection;
-    Rigidbody playerRb;
+public class PlayerController : Units // Inheritance
+
+{   private float rotationSpeed = 3.0f; //Encapsulaption
+
+    Rigidbody playerRb; //Encapsulaption
     private void Start()
     {
-        speed = 3;
+        speed = 5;
         unitRb = GetComponent<Rigidbody>();
     }
-    protected override void Look()
+    protected override void Look()  // Polymorphism
     {
         float horizontalInput = Input.GetAxis("Horizontal");
-        transform.Rotate(speed  * horizontalInput * Vector3.up);
+        transform.Rotate(rotationSpeed * horizontalInput * Vector3.up);
     }
 
-    protected override void move()
+    protected override void move() // Polymorphism
     {
         float verticalInput = Input.GetAxis("Vertical");
         unitDirection = new Vector3(0, 0, verticalInput);
-        unitDirection = transform.TransformDirection(playerDirection);
+        unitPosition = ObtainPosition();
 
-       
-        unitRb.MovePosition(unitPosition + speed * unitDirection * Time.deltaTime);
+        base.move();
 
     }
+
+  
 
     // Start is called before the first frame update
     private void OnTriggerEnter(Collider other)
@@ -37,5 +39,13 @@ public class PlayerController : Units
             Destroy(other.gameObject);
         }
     }
-    
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            SceneManager.LoadScene(0);
+        }
+        
+    }
+
 }

@@ -2,36 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyController : Units
+public class EnemyController : Units // Inheritance
 {
-    private PlayerController target;
-    
+    private PlayerController target; //Encapsulaption
+    private Vector3 targetPosition; //Encapsulaption
+
     private void Start()
     {
         target = GameObject.Find("Player").GetComponent<PlayerController>();
-        speed = 1;
+        speed = 1.5f;
         unitRb = GetComponent<Rigidbody>();
         
     }
-    protected override void Look()
+    protected override void Look() // Polymorphism
     {
-
-        transform.rotation = Quaternion.LookRotation(target.unitPosition);
+        targetPosition = target.unitPosition - transform.position;
+        transform.rotation = Quaternion.LookRotation(targetPosition, Vector3.up);
     }
 
-    protected override void move()
+    protected override void move() // Polymorphisms
     {
         unitDirection = Vector3.forward;
-        unitRb.MovePosition(unitPosition + speed * unitDirection * Time.deltaTime);
+        unitPosition = ObtainPosition();
+
+        base.move();
+
     }
+    
 
-
-
-
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

@@ -7,6 +7,7 @@ public class PlayerController : Units // Inheritance
 
 {   private float rotationSpeed = 3.0f; //Encapsulaption
     public AudioClip clipAudio;
+    public AudioClip loseAudio;
     private AudioSource audioSource;
 
     Rigidbody playerRb; //Encapsulaption
@@ -48,6 +49,7 @@ public class PlayerController : Units // Inheritance
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
+            audioSource.PlayOneShot(loseAudio);
             SceneManager.LoadScene(0);
         }
         

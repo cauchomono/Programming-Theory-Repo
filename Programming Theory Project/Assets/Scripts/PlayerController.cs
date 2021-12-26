@@ -6,12 +6,16 @@ using UnityEngine.SceneManagement;
 public class PlayerController : Units // Inheritance
 
 {   private float rotationSpeed = 3.0f; //Encapsulaption
+    public AudioClip clipAudio;
+    private AudioSource audioSource;
 
     Rigidbody playerRb; //Encapsulaption
     private void Start()
     {
         speed = 5;
         unitRb = GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
+
     }
     protected override void Look()  // Polymorphism
     {
@@ -37,6 +41,7 @@ public class PlayerController : Units // Inheritance
         if (other.CompareTag("Point"))
         {
             Destroy(other.gameObject);
+            audioSource.PlayOneShot(clipAudio);
         }
     }
     private void OnCollisionEnter(Collision collision)

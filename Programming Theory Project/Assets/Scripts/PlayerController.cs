@@ -34,8 +34,6 @@ public class PlayerController : Units // Inheritance
 
     }
 
-  
-
     // Start is called before the first frame update
     private void OnTriggerEnter(Collider other)
     {

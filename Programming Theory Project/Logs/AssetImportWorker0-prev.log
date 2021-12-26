@@ -244,7 +244,6 @@ Received Import Request.
 Start importing Assets/Plugins/Music Tracks using Guid(4fd5c6b519c1fa24186ad406f0bfc948) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a4e86e63230e99dea3f4b8d79a05b0d9') in 0.009907 seconds 
   Import took 0.012959 seconds .
 
-<<<<<<< HEAD
 ========================================================================
 Received Prepare
 Registering precompiled user dll's ...
@@ -319,5 +318,3 @@ Start importing Assets/Plugins/CasualGameSounds/DM-CGS-02.wav using Guid(dc6614b
   Import took 0.058137 seconds .
 
 AssetImportWorkerClient::OnTransportError - code=2 error=End of file
-=======
->>>>>>> main

@@ -21,9 +21,6 @@ public abstract class Units : MonoBehaviour // Inheritance
         unitPosition = transform.position;
         return unitPosition;
     }
-
-    
-       
     protected abstract void Look(); // Abstraction and refactoring
 
     private void LateUpdate()

@@ -17,21 +17,23 @@ public class SpawnerManager : MonoBehaviour
     {
         yEnemyPosition = enemy.transform.position.y;
         yPointPosition = point.transform.position.y;
-
-        
     }
 
     private void Update()
     {
         if (GameObject.FindGameObjectsWithTag("Point").Length <= 0)
         {
-            level++;
-            SpawnPoints();
-            CleanEnemyWave();
-            CreateEnemyWave(level);
-            
+            newLevel();
         }
 
+    }
+
+    void newLevel()// Abstraction and refactoring
+    {
+        level++;
+        SpawnPoints();
+        CleanEnemyWave();
+        CreateEnemyWave(level);
     }
     void SpawnPoints()// Abstraction and refactoring
     {
